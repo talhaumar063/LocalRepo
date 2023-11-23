@@ -21,3 +21,10 @@ function onSubmit(e) {
     emailInput.value = '';
   }
 }
+function saveToLocalStorage(e){
+  e.preventDefault();
+  const name = e.target.name.value;
+  const email = e.target.email.value;
+  localStorage.setItem('name' , name);
+  localStorage.setItem('email' , email);
+}
