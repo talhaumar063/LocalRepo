@@ -28,14 +28,29 @@ function onSubmit(e) {
     userList.appendChild(li);
     nameInput.value = '';
     emailInput.value = '';
-    var x = document.createElement("BUTTON");
-    var t = document.createTextNode("Delete");
-    x.onclick = () =>{
+
+    // Delete button functionality
+    var dltbtn = document.createElement("BUTTON");
+    var t = document.createTextNode("Delete User");
+    dltbtn.onclick = () =>{
       localStorage.removeItem(Myobj.email);
       userList.removeChild(li);
     }
-    x.appendChild(t);
-    li.appendChild(x)
+    dltbtn.appendChild(t);
+    li.appendChild(dltbtn)
+    userList.appendChild(li);
+
+    // Edit button functionality
+    var editbtn = document.createElement("BUTTON");
+    var t = document.createTextNode("Edit User");
+    editbtn.onclick = () =>{
+     console.log(document.getElementById('name').value = Myobj.name);
+      document.getElementById('email').value = Myobj.email;
+      localStorage.removeItem(Myobj.email);
+      userList.removeChild(li);
+    }
+    editbtn.appendChild(t);
+    li.appendChild(editbtn)
     userList.appendChild(li);
   }
 }
