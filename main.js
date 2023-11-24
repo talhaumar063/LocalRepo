@@ -14,11 +14,29 @@ function onSubmit(e) {
     msg.innerHTML = 'Please enter all fields';
     setTimeout(() => msg.remove(), 3000);
   } else {
+    let Myobj = {
+      name : e.target.name.value,
+      email : e.target.email.value
+  };
+  
+  const storedFormData = JSON.parse(localStorage.getItem('Myobj')) || [];
+  storedFormData.push(Myobj);
+
+  localStorage.setItem(Myobj.email , JSON.stringify(storedFormData));
     const li = document.createElement('li');
     li.appendChild(document.createTextNode(`${nameInput.value}: ${emailInput.value}`));
     userList.appendChild(li);
     nameInput.value = '';
     emailInput.value = '';
+    var x = document.createElement("BUTTON");
+    var t = document.createTextNode("Delete");
+    x.onclick = () =>{
+      localStorage.removeItem(Myobj.email);
+      userList.removeChild(li);
+    }
+    x.appendChild(t);
+    li.appendChild(x)
+    userList.appendChild(li);
   }
 }
 
@@ -31,22 +49,3 @@ function onSubmit(e) {
 //   localStorage.setItem('email' , email);
 // }
 
-// Store user detail using object in local Storage
-function saveToLocalStorage(e){
-  e.preventDefault();
-  let Myobj = {
-      name : e.target.name.value,
-      email : e.target.email.value
-  };
-  
-  const storedFormData = JSON.parse(localStorage.getItem('Myobj')) || [];
-  storedFormData.push(Myobj);
-
-  localStorage.setItem(Myobj.email , JSON.stringify(storedFormData));
-
-  // let Myobj_Serialize = JSON.stringify(Myobj);
-  
-  // localStorage.setItem("Myobj" , Myobj_Serialize);
-  // let Myobj_deserialize = JSON.parse(localStorage.getItem("Myobj"));
-  
-}
