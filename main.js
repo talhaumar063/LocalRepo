@@ -39,10 +39,14 @@ function saveToLocalStorage(e){
       email : e.target.email.value
   };
   
-  let Myobj_Serialize = JSON.stringify(Myobj);
-  
-  localStorage.setItem("Myobj" , Myobj_Serialize);
+  const storedFormData = JSON.parse(localStorage.getItem('Myobj')) || [];
+  storedFormData.push(Myobj);
 
-  let Myobj_deserialize = JSON.parse(localStorage.getItem("Myobj"));
-  console.log(Myobj_deserialize);
+  localStorage.setItem(Myobj.email , JSON.stringify(storedFormData));
+
+  // let Myobj_Serialize = JSON.stringify(Myobj);
+  
+  // localStorage.setItem("Myobj" , Myobj_Serialize);
+  // let Myobj_deserialize = JSON.parse(localStorage.getItem("Myobj"));
+  
 }
